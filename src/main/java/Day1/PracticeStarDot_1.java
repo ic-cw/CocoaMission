@@ -2,7 +2,7 @@ package main.java.Day1;
 
 import java.util.Scanner;
 
-public class PracticeStarDot {
+public class PracticeStarDot_1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int starCount = scanner.nextInt();
