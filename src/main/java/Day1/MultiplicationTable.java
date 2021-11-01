@@ -1,4 +1,4 @@
-package main.java.MultiplicationTable;
+package main.java.Day1;
 
 import java.util.Scanner;
 
