@@ -43,7 +43,7 @@ public enum DateNaming {
         this.dateName = dateName;
     }
 
-    public static String getMonthName(String inputDate){
+    public static String getDateName(String inputDate){
         return Arrays.stream(values())
                 .filter(date -> date.dateDigit.equals(inputDate))
                 .findAny()

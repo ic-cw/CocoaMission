@@ -19,8 +19,8 @@ public enum MonthNaming {
     private final String monthDigit;
     private final String monthName;
 
-    MonthNaming(String month, String monthName){
-        this.monthDigit = month;
+    MonthNaming(String monthDigit, String monthName){
+        this.monthDigit = monthDigit;
         this.monthName = monthName;
     }
 
