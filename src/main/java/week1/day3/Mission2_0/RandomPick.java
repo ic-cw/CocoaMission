@@ -6,7 +6,9 @@ import java.util.*;
 public class RandomPick {
     public static void main(String[] args) {
         List<String> names = generateShuffledNames();
-        int count = inputCount();
+        int count = inputCount(names.size());
+
+
     }
 
     private static List<String> generateShuffledNames() {
@@ -16,9 +18,18 @@ public class RandomPick {
         return names;
     }
 
-    private static int inputCount() {
+    private static int inputCount(int maxValue) {
         Scanner sc = new Scanner(System.in);
         System.out.print("몇명인가요?  ");
-        return sc.nextInt();
+        int countMembers = sc.nextInt();
+        try{
+            if (countMembers > maxValue){
+                throw new IllegalArgumentException("코코아 멤버수보다 큰 수를 입력하였습니다. 10이하의 수를 입력해주세요.");
+            }
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputCount(maxValue);
+        }
+        return countMembers;
     }
 }
