@@ -7,7 +7,12 @@ import java.util.Scanner;
 
 public class IndianNaming {
     public static void main(String[] args) {
-        ArrayList<String> ymd2 = (ArrayList<String>) inputDateOfBirth();
+        run();
+    }
+
+    private static void run() {
+        ArrayList<String> dateOfBirth = (ArrayList<String>) inputDateOfBirth();
+        printIndianName(dateOfBirth);
     }
 
     private static List<String > inputDateOfBirth() {
@@ -15,7 +20,19 @@ public class IndianNaming {
         System.out.println("생년월일을 입력해 주세요.");
         String birthDay = sc.nextLine();
         String[] yearMonthDate = birthDay.split(" ");
-        List<String> ymd = new ArrayList<>(Arrays.asList(yearMonthDate));
-        return ymd;
+        List<String> birthdayOfClient = new ArrayList<>(Arrays.asList(yearMonthDate));
+        return birthdayOfClient;
+    }
+
+    private static void printIndianName(ArrayList<String> ymd2){
+        try {
+            String yearName = YearNaming.getYearName(ymd2.get(0));
+            String monthName = MonthNaming.getMonthName(ymd2.get(1));
+            String dateName = DateNaming.getDateName(ymd2.get(2));
+            System.out.println("당신의 이름은 " + yearName + " " + monthName + dateName + "입니다.");
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            run();
+        }
     }
 }
