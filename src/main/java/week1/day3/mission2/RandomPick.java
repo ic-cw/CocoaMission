@@ -10,7 +10,7 @@ public class RandomPick {
     }
 
     private static List<String> generateShuffledNames() {
-        String[] name = {"Jarry", "Sonny", "Konda", "Hanse", "Teemo", "검봉", "Hanse", "반스", "Bart", "Ella", "Yan"};
+        String[] name = {"Jarry", "Sonny", "Konda", "Hanse", "Teemo", "검봉", "반스", "Bart", "Ella", "Yan"};
         List<String> names = new ArrayList<>(Arrays.asList(name));
         Collections.shuffle(names);
         return names;
@@ -22,7 +22,7 @@ public class RandomPick {
         int countMembers = sc.nextInt();
         try {
             if (countMembers > maxValue) {
-                throw new IllegalArgumentException("코코아 멤버수보다 큰 수를 입력하였습니다. 10이하의 수를 입력해주세요.");
+                throw new IllegalArgumentException("코코아 멤버수보다 큰 수를 입력하였습니다. 9이하의 수를 입력해주세요.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
