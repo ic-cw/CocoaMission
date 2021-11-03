@@ -1,14 +1,12 @@
 package main.java.week1.day3.Mission2_0;
 
-import java.io.IOException;
 import java.util.*;
 
 public class RandomPick {
     public static void main(String[] args) {
         List<String> names = generateShuffledNames();
         int count = inputCount(names.size());
-
-
+        printNames(names, count);
     }
 
     private static List<String> generateShuffledNames() {
@@ -22,14 +20,23 @@ public class RandomPick {
         Scanner sc = new Scanner(System.in);
         System.out.print("몇명인가요?  ");
         int countMembers = sc.nextInt();
-        try{
-            if (countMembers > maxValue){
+        try {
+            if (countMembers > maxValue) {
                 throw new IllegalArgumentException("코코아 멤버수보다 큰 수를 입력하였습니다. 10이하의 수를 입력해주세요.");
             }
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputCount(maxValue);
         }
         return countMembers;
+    }
+
+    private static void printNames(List<String> names, int count) {
+        for (int i = 0; i < count; i++) {
+            System.out.print(names.get(i));
+            if (i != count - 1) {
+                System.out.print(", ");
+            }
+        }
     }
 }
