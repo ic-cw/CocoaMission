@@ -23,7 +23,7 @@ public enum YearNaming {
     }
 
     public static String getYearName(String inputYear){
-        String inputYearDigit = inputYear.substring(3);
+        String inputYearDigit = inputYear.substring(inputYear.length() - 1);
         return Arrays.stream(values())
                      .filter(year -> year.yearDigit.equals(inputYearDigit))
                      .findAny()
