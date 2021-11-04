@@ -20,6 +20,10 @@ public class IndianNaming {
         System.out.println("생년월일을 입력해 주세요.");
         String birthDay = sc.nextLine();
         String[] yearMonthDate = birthDay.split(" ");
+        if (yearMonthDate.length != 3){
+            System.out.println("연 월 일을 띄어쓰기로 구분해 주세요.");
+            run();
+        }
         List<String> birthdayOfClient = new ArrayList<>(Arrays.asList(yearMonthDate));
         return birthdayOfClient;
     }
