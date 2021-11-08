@@ -25,7 +25,19 @@ public class AccountBook {
         List<String> userEnrollment = input();
         //이부분 로직 수정해야할지도?
         User user = new User(userEnrollment.get(0), userEnrollment.get(1));
-        System.out.println("환영합니다 " + user.getName() + "님 ^^");ㅇ
+        System.out.println("환영합니다 " + user.getName() + "님 ^^");
+        int todo = selectWhatToDo();
+        System.out.println(todo);
+    }
+
+    private int selectWhatToDo() throws IOException {
+        System.out.println("가계부를 입력, 삭제, 수정, 조회할 수 있습니다.");
+        System.out.println("가계부 입력을 원하시면 1 을");
+        System.out.println("가계부 삭제를 원하시면 2 을");
+        System.out.println("가계부 수정을 원하시면 3 을");
+        System.out.println("가계부 조회를 원하시면 4 를 눌러주세요.");
+        int todo = Integer.parseInt(input().get(0));
+        return todo;
     }
 
     private List<String> input() throws IOException {
