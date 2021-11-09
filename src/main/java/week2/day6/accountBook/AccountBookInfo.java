@@ -1,20 +1,20 @@
 package main.java.week2.day6.accountBook;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class AccountBookInfo {
-    private String date;
-    private String content;
-    private String income;
-    private String expenditure;
-    private String balance;
+    private final String date;
+    private final String content;
+    private final int income;
+    private final int expenditure;
 
-    public AccountBookInfo(String date, String content, String income, String expenditure, String balance){
+    public AccountBookInfo(String date, String content, int income, int expenditure){
         this.date = date;
         this.content = content;
         this.income = income;
         this.expenditure = expenditure;
-        this.balance = balance;
     }
 }
