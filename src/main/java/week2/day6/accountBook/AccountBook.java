@@ -41,23 +41,25 @@ public class AccountBook {
                         accountBookInfo.getContent() + ", 수입 : " + accountBookInfo.getIncome() + ", 지출 : " + accountBookInfo.getExpenditure() +
                         " 잔액 : " + accountBookInfos.getBalance());
                 System.out.println("가계부 입력이 완료되었습니다.");
+                handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
             case 2 :
                 System.out.println("가계부 삭제를 선택하셨습니다.");
-                System.out.println("삭제하실 가계부의 순번을 입력해주세요");
+                System.out.println("삭제하실 가계부의 순번을 입력해주세요.");
                 int deleteOrder = Integer.parseInt(input().get(0));
                 accountBookInfos.deleteAccountBookInfo(deleteOrder);
+                System.out.println(deleteOrder + "번째의 자료가 삭제되었습니다.");
+                handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
             case 3 :
                 System.out.println("가계부 수정을 선택하셨습니다.");
+                System.out.println("수정을 원하시는 가계부의 순번을 입력해주세요.");
+                handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
             case 4 :
                 System.out.println("가계부 조회를 선택하셨습니다.");
-//                for (accountBookInfos.getAccountBookInfos()) {
-//                    System.out.println("순번 : " + accountBookInfo1.getOrder() + ", 날짜 : " + accountBookInfo1.getDate() +
-//                            accountBookInfo1.getContent() + accountBookInfo1.getIncome() + accountBookInfo1.getExpenditure() + );
-//
-//                }
+
+                handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
             case 5 :
                 System.out.println("가계부 서비스를 종료합니다.");
