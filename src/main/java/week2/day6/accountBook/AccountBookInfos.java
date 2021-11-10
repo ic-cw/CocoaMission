@@ -29,8 +29,10 @@ public class AccountBookInfos {
     }
 
     public void updateAccountBookInfo(int updateOrder, AccountBookInfo updatedAccountBookInfo){
+        int beforeIncome = this.accountBookInfos.get(updateOrder).getIncome();
+        int beforeExpenditure = this.accountBookInfos.get(updateOrder).getExpenditure();
         accountBookInfos.replace(updateOrder, updatedAccountBookInfo);
-        //todo balance관련 로직 작성 필요
+        setBalance(beforeIncome + updatedAccountBookInfo.getIncome(), beforeExpenditure + updatedAccountBookInfo.getExpenditure());
     }
 
     private void setBalance(int income, int expenditure) {
@@ -39,21 +41,23 @@ public class AccountBookInfos {
     }
 
     public void selectAccountBookInfo(String selectedMonth){
-        System.out.println("==순번=======날짜=======내용=======수입=======지출=======");
+        System.out.println("순번====날짜=======수입/지출=============내용==============");
         if (selectedMonth.equals("0")){
             for (int key :accountBookInfos.keySet()){
                 AccountBookInfo accountBookInfo = accountBookInfos.get(key);
-                System.out.println(key + "\t" + accountBookInfo.getDate() + "\t" + accountBookInfo.getContent()
-                        + "\t" + accountBookInfo.getIncome() + "\t" + accountBookInfo.getExpenditure());
+                System.out.println(key + "\t" + accountBookInfo.getDate() + "\t" + accountBookInfo.getIncome()
+                        + "/\t" + accountBookInfo.getExpenditure() + "\t\t" + accountBookInfo.getContent());
             }
         }
         for (int key :accountBookInfos.keySet()){
             if (accountBookInfos.get(key).getDate().substring(0,6).equals(selectedMonth)) {
+                System.out.println(accountBookInfos.get(key).getDate().substring(0,6));
                 AccountBookInfo accountBookInfoByMonth = accountBookInfos.get(key);
-                System.out.println(key + "\t" + accountBookInfoByMonth.getDate() + "\t" + accountBookInfoByMonth.getContent()
-                        + "\t" + accountBookInfoByMonth.getIncome() + "\t" + accountBookInfoByMonth.getExpenditure());
+                System.out.println(key + "\t" + accountBookInfoByMonth.getDate() + "\t" + accountBookInfoByMonth.getIncome()
+                        + "\t" + accountBookInfoByMonth.getExpenditure() + "\t\t" + accountBookInfoByMonth.getContent());
             };
             //todo 선택한 월이 없을때의 예외처리
         }
+        System.out.println("============================현재 잔액 " + this.balance + "============");
     }
 }
