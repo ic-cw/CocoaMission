@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public class AccountBookInfos {
     private static final AccountBookInfos instance = new AccountBookInfos();
-    private Map<Integer, AccountBookInfo> accountBookInfos = new HashMap<>();
+    private final Map<Integer, AccountBookInfo> accountBookInfos = new HashMap<>();
     private int order = 0;
     private int balance = 0;
 
@@ -26,6 +26,10 @@ public class AccountBookInfos {
 
     public void deleteAccountBookInfo(int deleteOrder) {
         accountBookInfos.remove(deleteOrder);
+    }
+
+    public void updateAccountBookInfo(int updateOrder, AccountBookInfo updatedAccountBookInfo){
+        accountBookInfos.replace(updateOrder, updatedAccountBookInfo);
     }
 
     private void setBalance(int income, int expenditure) {
