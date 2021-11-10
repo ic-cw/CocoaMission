@@ -32,8 +32,8 @@ public class AccountBook {
             case 1 :
                 System.out.println("가계부 입력을 선택하셨습니다.");
                 System.out.println("날짜, 적요(내용), 수입, 지출을 띄어쓰기로 구분하여 입력해주세요");
-                List<String> inputDaily = input();
                 //적요(내용)가 띄어쓰기로 구분되지 않을 때의 로직
+                List<String> inputDaily = input();
                 AccountBookInfo accountBookInfo = new AccountBookInfo(inputDaily.get(0), inputDaily.get(1), Integer.parseInt(inputDaily.get(2)),
                         Integer.parseInt(inputDaily.get(3)));
                 accountBookInfos.addAccountBookInfo(accountBookInfo);
@@ -54,10 +54,17 @@ public class AccountBook {
             case 3 :
                 System.out.println("가계부 수정을 선택하셨습니다.");
                 System.out.println("수정을 원하시는 가계부의 순번을 입력해주세요.");
+                int updateOrder = Integer.parseInt(input().get(0));
+                System.out.println("수정하실 가계부의 날짜, 적요(내용), 수입, 지출을 띄어쓰기로 구분하여 입력해주세요");
+                List<String> inputUpdate = input();
+                AccountBookInfo updatedAccountBookInfo = new AccountBookInfo(inputUpdate.get(0), inputUpdate.get(1), Integer.parseInt(inputUpdate.get(2)),
+                        Integer.parseInt(inputUpdate.get(3)));
+                accountBookInfos.updateAccountBookInfo(updateOrder, updatedAccountBookInfo);
                 handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
             case 4 :
                 System.out.println("가계부 조회를 선택하셨습니다.");
+
 
                 handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
