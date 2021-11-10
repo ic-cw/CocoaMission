@@ -50,8 +50,7 @@ public class AccountBookInfos {
             }
         }
         for (int key :accountBookInfos.keySet()){
-            if (accountBookInfos.get(key).getDate().substring(0,6).equals(selectedMonth)) {
-                System.out.println(accountBookInfos.get(key).getDate().substring(0,6));
+            if (accountBookInfos.get(key).getDate().substring(0,7).equals(selectedMonth)) {
                 AccountBookInfo accountBookInfoByMonth = accountBookInfos.get(key);
                 System.out.println(key + "\t" + accountBookInfoByMonth.getDate() + "\t" + accountBookInfoByMonth.getIncome()
                         + "\t" + accountBookInfoByMonth.getExpenditure() + "\t\t" + accountBookInfoByMonth.getContent());
