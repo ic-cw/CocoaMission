@@ -32,7 +32,8 @@ public class AccountBook {
             case 1 :
                 System.out.println("가계부 입력을 선택하셨습니다.");
                 System.out.println("날짜, 적요(내용), 수입, 지출을 띄어쓰기로 구분하여 입력해주세요");
-                //적요(내용)가 띄어쓰기로 구분되지 않을 때의 로직
+                System.out.println("날짜는 yyyy-mm-dd의 형태로 입력해주세요.");
+                //todo 적요(내용)가 띄어쓰기로 구분되지 않을 때의 로직
                 List<String> inputDaily = input();
                 AccountBookInfo accountBookInfo = new AccountBookInfo(inputDaily.get(0), inputDaily.get(1), Integer.parseInt(inputDaily.get(2)),
                         Integer.parseInt(inputDaily.get(3)));
@@ -64,8 +65,11 @@ public class AccountBook {
                 break;
             case 4 :
                 System.out.println("가계부 조회를 선택하셨습니다.");
-
-
+                //todo 여러 월을 조회할 수 있도록 리팩토링
+                System.out.println("조회를 원하는 월을 하나만 입력해주세요 ex) 2021-09 2020-12 1995-01");
+                System.out.println("전체 가계부 조회는 0을 입력해 주세요.");
+                String selectedMonth = input().get(0);
+                accountBookInfos.selectAccountBookInfo(selectedMonth);
                 handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
             case 5 :
