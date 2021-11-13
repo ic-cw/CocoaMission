@@ -1,6 +1,7 @@
 package main.java.week2.day6.accountBook;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.StringTokenizer;
 //데이터 삭제: 특정 순번의 데이터를 삭제한다.
 //데이터 수정: 특정 순번의 데이터를 수정할 수 있다.
 //화면에 출력: 해당 월의 지출내역을 순번, 적요, 수입, 지출, 잔액으로 화면에 출력한다.
+///Users/chaewoo/IdeaProjects/CocoaMission/src/main/java/week2/day6/accountBook <-패키지 디렉토리
 public class AccountBook {
     public static void main(String[] args) {
         AccountBook accountBook = new AccountBook();
@@ -24,19 +26,25 @@ public class AccountBook {
         AccountBookInfos accountBookInfos = AccountBookInfos.getInstance();
         int todo = selectWhatToDo();
         handleAccountBook(accountBookInfos, todo);
-        //스위치문 이후 다시 입력받는 로직 필요(재귀 사용)
     }
 
     private void handleAccountBook(AccountBookInfos accountBookInfos, int todo) {
         switch (todo){
             case 1 :
                 System.out.println("가계부 입력을 선택하셨습니다.");
-                System.out.println("날짜, 적요(내용), 수입, 지출을 띄어쓰기로 구분하여 입력해주세요");
+                System.out.println("날짜, 적요(내용), 수입, 지출을 입력해주세요");
                 System.out.println("날짜는 yyyy-mm-dd의 형태로 입력해주세요.");
-                //todo 적요(내용)가 띄어쓰기로 구분되지 않을 때의 로직
-                List<String> inputDaily = input();
-                AccountBookInfo accountBookInfo = new AccountBookInfo(inputDaily.get(0), inputDaily.get(1), Integer.parseInt(inputDaily.get(2)),
-                        Integer.parseInt(inputDaily.get(3)));
+                //todo 따로 받자
+                System.out.println("날짜를 입력해주세요 : ");
+                List<String> inputDate = input();
+                System.out.println("적요를 입력해주세요 : ");
+                List<String> inputContent = input();
+                System.out.println("수입을 입력해주세요 : ");
+                List<String> inputIncome = input();
+                System.out.println("지출을 입력해주세요 : ");
+                List<String> inputExpenditure = input();
+                AccountBookInfo accountBookInfo = new AccountBookInfo(inputDate.get(0), inputContent, Integer.parseInt(inputIncome.get(0)),
+                        Integer.parseInt(inputExpenditure.get(0)));
                 accountBookInfos.addAccountBookInfo(accountBookInfo);
                 System.out.println("순번 : " + accountBookInfos.getOrder() + ", 날짜 : " + accountBookInfo.getDate() + ", 적요(내용) : " +
                         accountBookInfo.getContent() + ", 수입 : " + accountBookInfo.getIncome() + ", 지출 : " + accountBookInfo.getExpenditure() +
@@ -57,9 +65,16 @@ public class AccountBook {
                 System.out.println("수정을 원하시는 가계부의 순번을 입력해주세요.");
                 int updateOrder = Integer.parseInt(input().get(0));
                 System.out.println("수정하실 가계부의 날짜, 적요(내용), 수입, 지출을 띄어쓰기로 구분하여 입력해주세요");
-                List<String> inputUpdate = input();
-                AccountBookInfo updatedAccountBookInfo = new AccountBookInfo(inputUpdate.get(0), inputUpdate.get(1), Integer.parseInt(inputUpdate.get(2)),
-                        Integer.parseInt(inputUpdate.get(3)));
+                System.out.println("날짜를 입력해주세요 : ");
+                List<String> inputUpdateDate = input();
+                System.out.println("적요를 입력해주세요 : ");
+                List<String> inputUpdateContent = input();
+                System.out.println("수입을 입력해주세요 : ");
+                List<String> inputUpdateIncome = input();
+                System.out.println("지출을 입력해주세요 : ");
+                List<String> inputUpdateExpenditure = input();
+                AccountBookInfo updatedAccountBookInfo = new AccountBookInfo(inputUpdateDate.get(0), inputUpdateContent, Integer.parseInt(inputUpdateIncome.get(0)),
+                        Integer.parseInt(inputUpdateExpenditure.get(0)));
                 accountBookInfos.updateAccountBookInfo(updateOrder, updatedAccountBookInfo);
                 handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
@@ -108,5 +123,8 @@ public class AccountBook {
             System.out.println("잘못된 입력입니다.");
             return input();
         }
+        //todo bufferedReader flush(),close() 알아보고 쓰기
     }
+
+//    private File fileInput
 }
