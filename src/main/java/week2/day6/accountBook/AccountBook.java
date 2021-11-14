@@ -1,7 +1,6 @@
 package main.java.week2.day6.accountBook;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -34,21 +33,31 @@ public class AccountBook {
                 System.out.println("가계부 입력을 선택하셨습니다.");
                 System.out.println("날짜, 적요(내용), 수입, 지출을 입력해주세요");
                 System.out.println("날짜는 yyyy-mm-dd의 형태로 입력해주세요.");
-                //todo 따로 받자
                 System.out.println("날짜를 입력해주세요 : ");
                 List<String> inputDate = input();
                 System.out.println("적요를 입력해주세요 : ");
                 List<String> inputContent = input();
-                System.out.println("수입을 입력해주세요 : ");
-                List<String> inputIncome = input();
-                System.out.println("지출을 입력해주세요 : ");
-                List<String> inputExpenditure = input();
-                AccountBookInfo accountBookInfo = new AccountBookInfo(inputDate.get(0), inputContent, Integer.parseInt(inputIncome.get(0)),
-                        Integer.parseInt(inputExpenditure.get(0)));
+                int inputIncomeToInteger = 0;
+                try {
+                    System.out.println("수입을 입력해주세요 : ");
+                    List<String> inputIncome = input();
+                    inputIncomeToInteger = Integer.parseInt(inputIncome.get(0));
+                } catch (NumberFormatException e) {
+                    System.out.println("수입을 숫자 형태로 입력해주세요. 입력을 다시 받습니다.");
+                    handleAccountBook(accountBookInfos, 1);
+                }
+                int inputExpenditureToInteger = 0;
+                try {
+                    System.out.println("지출을 입력해주세요 : ");
+                    List<String> inputExpenditure = input();
+                    inputExpenditureToInteger = Integer.parseInt(inputExpenditure.get(0));
+                } catch (NumberFormatException e) {
+                    System.out.println("지출을 숫자 형태로 입력해주세요. 입력을 다시 받습니다.");
+                    handleAccountBook(accountBookInfos, 1);
+                }
+                AccountBookInfo accountBookInfo = new AccountBookInfo(inputDate.get(0), inputContent, inputIncomeToInteger,
+                        inputExpenditureToInteger);
                 accountBookInfos.addAccountBookInfo(accountBookInfo);
-                System.out.println("순번 : " + accountBookInfos.getOrder() + ", 날짜 : " + accountBookInfo.getDate() + ", 적요(내용) : " +
-                        accountBookInfo.getContent() + ", 수입 : " + accountBookInfo.getIncome() + ", 지출 : " + accountBookInfo.getExpenditure() +
-                        " 잔액 : " + accountBookInfos.getBalance());
                 System.out.println("가계부 입력이 완료되었습니다.");
                 handleAccountBook(accountBookInfos, selectWhatToDo());
                 break;
